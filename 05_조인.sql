@@ -25,3 +25,33 @@ WHERE l.city IN('Seattle', 'London') AND c.country_name LIKE 'United%';
 SELECT e.last_name 직원, m.last_name 매니저
 FROM employees e JOIN employees m
 ON e.manager_id = m.employee_id;
+
+-- 기본 외부 조인
+SELECT e.last_name 이름, d.department_id 부서번호, d.department_name 부서명
+FROM employees e JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 왼쪽 외부 조인
+SELECT e.last_name 이름, d.department_id 부서번호, d.department_name 부서명
+FROM employees e LEFT OUTER JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 오른쪽 외부 조인
+SELECT e.last_name 이름, d.department_id 부서번호, d.department_name 부서명
+FROM employees e RIGHT OUTER JOIN departments d
+ON e.department_id = d.department_id;
+
+-- FULL 외부 조인
+SELECT e.last_name 이름, d.department_id 부서번호, d.department_name 부서명
+FROM employees e FULL OUTER JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 예제
+SELECT c.country_name 국가, c.country_id 국가번호, l.location_id 지역번호, l.city 도시
+FROM countries c LEFT OUTER JOIN locations l
+ON c.country_id = l.country_id
+ORDER BY 지역번호 DESC;
+
+-- 크로스 조인 예제
+SELECT c.country_name 국가, r.region_name 지역이름
+FROM countries c CROSS JOIN regions r;
